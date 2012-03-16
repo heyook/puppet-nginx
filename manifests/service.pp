@@ -21,10 +21,10 @@ class nginx::service {
   }
   service { "nginx":
     ensure     => running,
-	enable	   => true,
+	  enable	   => true,
     hasstatus  => true,
-	hasrestart => true,
-	subscribe  => Class['nginx'],
+	  hasrestart => true,
+	  subscribe  => Class['nginx'],
   }
 
   Exec['rebuild-nginx-vhosts'] ~> Service['nginx']
