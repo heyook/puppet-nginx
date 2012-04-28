@@ -26,14 +26,14 @@
 #  }
 define nginx::resource::location( 
 	$ensure         = 'present',
-    $vhost          = undef,
-    $location,
+  $vhost          = undef,
+  $location,
 	$www_root       = undef,
 	$index_files    = ['index.html', 'index.htm', 'index.php'],
 	$proxy          = undef,
-	$ssl		    = 'false',
-    $option	        = undef
-){
+	$ssl		        = 'false',
+  $option	        = undef
+) {
 	File { 
 		owner  => 'root', 
 		group  => 'root', 
@@ -65,7 +65,6 @@ define nginx::resource::location(
 		fail('Cannot define both directory and proxy in a virtual host')
 	}
 	
-	
 	## Create stubs for vHost File Fragment Pattern 
 	file {"${nginx::config::nx_temp_dir}/nginx.d/${vhost}-500-${name}":
 		ensure  => $ensure_real,
@@ -78,5 +77,5 @@ define nginx::resource::location(
 		  ensure  => $ensure_real,
 		  content => $content_re,
 	  }
-    }
+  }
 }

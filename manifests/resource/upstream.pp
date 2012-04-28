@@ -22,7 +22,7 @@
 define nginx::resource::upstream (
 	$ensure 	= 'present',
 	$members
-){
+) {
 	File { 
 		owner => 'root', 
 		group => 'root', 

@@ -39,3 +39,24 @@ Add a Proxy Server(s)
         proxy  => 'http://puppet_rack_app',
       }
     } 
+
+## Creating the Rails Directory Tree
+
+    class massiveapp {
+      file {
+        ["/var/massiveapp/",
+         "/var/massiveapp/shared/",
+         "/var/massiveapp/shared/config/"]:
+        ensure => directory,
+        owner => vagrant,
+        group => vagrant,
+        mode => 775
+      }
+    }
+
+### We also need bundler to be installed.
+
+    package {
+      "bundler":
+      provider => gem
+    }

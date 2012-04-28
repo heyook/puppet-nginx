@@ -10,7 +10,7 @@
 #                          support exists on your system before enabling.
 #   [*ipv6_listen_ip*]   - Default IPv6 Address for NGINX to listen with this vHost on. Defaults to all interfaces (::)
 #   [*ipv6_listen_port*] - Default IPv6 Port for NGINX to listen with this vHost on. Defaults to TCP 80
-#   [*index_files*]      -  Default index files for NGINX to read when traversing a directory
+#   [*index_files*]      - Default index files for NGINX to read when traversing a directory
 #   [*proxy*]            - Proxy server(s) for a location to connect to. Accepts a single value, can be used in conjunction
 #                          with nginx::resource::upstream
 #   [*ssl*]              - Indicates whether to setup SSL bindings for this location.
@@ -40,7 +40,7 @@ define nginx::resource::vhost(
 	$ssl              = 'false',
 	$ssl_cert         = undef,
 	$ssl_key          = undef,
-    $proxy            = undef,
+  $proxy            = undef,
 	$index_files      = ['index.html', 'index.htm', 'index.php'],
 	$www_root         = undef
 ) {
@@ -76,14 +76,14 @@ define nginx::resource::vhost(
 	}
 	
 	# Create the default location reference for the vHost
-	nginx::resource::location {"${name}-default":
+	nginx::resource::location { "${name}-default":
 		ensure	     => $ensure,
 		vhost        => $name,
 		ssl          => $ssl,
-		location	 => '/', 	
-		proxy		 => $proxy,
-		www_root	 => $www_root,
-		notify		 => Class['nginx::service'],
+		location	   => '/', 	
+		proxy		     => $proxy,
+		www_root	   => $www_root,
+		notify		   => Class['nginx::service'],
 	}
 	
 	# Create a proper file close stub.
